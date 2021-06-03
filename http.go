@@ -1,5 +1,7 @@
 package ycmodel
 
+import "encoding/base64"
+
 // Identity is user identification
 type Identity struct {
 	SourceIP  string `json:"sourceIp"`
@@ -67,4 +69,19 @@ type Request struct {
 	// FIXME: I don't see a description of these fields in the documentation.
 	// During experiments, empty fields are returned
 	PathParams interface{} `json:"pathParams"`
+}
+
+func (req *Request) GetStringBody() (string, error) {
+	var result string
+
+	if req.IsBase64Encoded {
+		bytes, err := base64.StdEncoding.DecodeString(req.Body)
+		if err != nil {
+			return "", err
+		}
+		result = string(bytes)
+	} else {
+		result = req.Body
+	}
+	return result, nil
 }
