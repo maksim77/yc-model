@@ -9,12 +9,12 @@ type MessageAttributeValue struct {
 
 	// Binary type attributes can store any binary data, such as compressed data,
 	// encrypted data, or images.
-	BinaryValue *[]byte `json:"binary_value"`
+	BinaryValue []byte `json:"binary_value"`
 
 	// Strings are Unicode with UTF-8 binary encoding. For a list of code values, see
 	// ASCII Printable Characters
 	// (http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters).
-	StringValue *string `json:"string_value"`
+	StringValue string `json:"string_value"`
 }
 
 type MessageQueue struct {
