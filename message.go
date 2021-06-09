@@ -2,9 +2,20 @@ package ycmodel
 
 import (
 	"time"
-
-	"github.com/aws/aws-sdk-go-v2/service/sqs/types"
 )
+
+type MessageAttributeValue struct {
+	DataType string `json:"data_type"`
+
+	// Binary type attributes can store any binary data, such as compressed data,
+	// encrypted data, or images.
+	BinaryValue *[]byte `json:"binary_value"`
+
+	// Strings are Unicode with UTF-8 binary encoding. For a list of code values, see
+	// ASCII Printable Characters
+	// (http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters).
+	StringValue *string `json:"string_value"`
+}
 
 type MessageQueue struct {
 	Messages []Messages `json:"messages"`
@@ -20,7 +31,7 @@ type Attributes struct {
 	Senttimestamp string `json:"SentTimestamp"`
 }
 
-type MessageAttributes map[string]types.MessageAttributeValue
+type MessageAttributes map[string]MessageAttributeValue
 
 type Message struct {
 	MessageID              string            `json:"message_id"`
