@@ -13,7 +13,7 @@ type MessageAttributeValue struct {
 	StringValue string `json:"string_value"`
 }
 
-type MessageQueue struct {
+type QueueMessages struct {
 	Messages []Messages `json:"messages"`
 }
 

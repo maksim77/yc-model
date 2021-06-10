@@ -24,7 +24,7 @@ type RequestContext struct {
 	RequestTimeEpoch int64 `json:"requestTimeEpoch"`
 }
 
-type Request struct {
+type HTTPMessage struct {
 	// HTTP method (DELETE, GET, HEAD, OPTIONS, PATCH, POST or PUT)
 	HTTPMethod string `json:"httpMethod"`
 
@@ -71,17 +71,17 @@ type Request struct {
 	PathParams interface{} `json:"pathParams"`
 }
 
-func (req *Request) GetStringBody() (string, error) {
+func (httpM *HTTPMessage) GetStringBody() (string, error) {
 	var result string
 
-	if req.IsBase64Encoded {
-		bytes, err := base64.StdEncoding.DecodeString(req.Body)
+	if httpM.IsBase64Encoded {
+		bytes, err := base64.StdEncoding.DecodeString(httpM.Body)
 		if err != nil {
 			return "", err
 		}
 		result = string(bytes)
 	} else {
-		result = req.Body
+		result = httpM.Body
 	}
 	return result, nil
 }
