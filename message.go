@@ -1,15 +1,11 @@
 package ycmodel
 
-import (
-	"time"
-)
-
 type MessageAttributeValue struct {
 	DataType string `json:"data_type"`
 
 	// Binary type attributes can store any binary data, such as compressed data,
 	// encrypted data, or images.
-	BinaryValue []byte `json:"binary_value"`
+	BinaryValue *[]byte `json:"binary_value"`
 
 	// Strings are Unicode with UTF-8 binary encoding. For a list of code values, see
 	// ASCII Printable Characters
@@ -19,12 +15,6 @@ type MessageAttributeValue struct {
 
 type MessageQueue struct {
 	Messages []Messages `json:"messages"`
-}
-
-type EventMetadata struct {
-	EventID   string    `json:"event_id"`
-	EventType string    `json:"event_type"`
-	CreatedAt time.Time `json:"created_at"`
 }
 
 type Attributes struct {
