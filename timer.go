@@ -1,7 +1,7 @@
 package ycmodel
 
 type Timer struct {
-	Messages []Messages `json:"messages"`
+	Messages []TimerMessages `json:"messages"`
 }
 
 type TimerDetails struct {
