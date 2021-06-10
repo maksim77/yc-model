@@ -9,5 +9,5 @@ type TimerDetails struct {
 }
 type TimerMessages struct {
 	EventMetadata EventMetadata `json:"event_metadata"`
-	Details       Details       `json:"details"`
+	Details       TimerDetails  `json:"details"`
 }
